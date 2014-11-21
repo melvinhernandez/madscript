@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  commented_by: MyString
+  reference_line_start: 1
+  reference_line_end: 1
+  analysis_and_feedback: MyString
+
+two:
+  commented_by: MyString
+  reference_line_start: 1
+  reference_line_end: 1
+  analysis_and_feedback: MyString

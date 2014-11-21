@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  stanza_number: 1
+  authored_by: MyString
+  number_of_lines: 1
+
+two:
+  stanza_number: 1
+  authored_by: MyString
+  number_of_lines: 1

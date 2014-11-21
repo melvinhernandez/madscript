@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  current_state: 1
+  new_state: 1
+  likes_for_current_draft: 1
+  draft_state_number: 1
+  number_of_editors: 1
+  curr_editor: 1
+
+two:
+  current_state: 1
+  new_state: 1
+  likes_for_current_draft: 1
+  draft_state_number: 1
+  number_of_editors: 1
+  curr_editor: 1
