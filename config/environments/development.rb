@@ -34,4 +34,8 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  # Ensure defined default url options in environments. Added in 'UserCreation' branch of repo.
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
 end
