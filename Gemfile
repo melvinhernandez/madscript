@@ -38,3 +38,9 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+# Devise gem to implement users. Created in 'UserCreation' branch of repo.
+gem 'devise'
+
+# Gem to get boostrap onto rails.
+gem 'bootstrap-sass', '~> 3.3.1'
+gem 'autoprefixer-rails'
