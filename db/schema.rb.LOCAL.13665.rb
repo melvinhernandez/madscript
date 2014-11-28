@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141126023004) do
+ActiveRecord::Schema.define(version: 20141121013552) do
 
   create_table "authors", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -26,7 +26,6 @@ ActiveRecord::Schema.define(version: 20141126023004) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "username"
     t.string   "fave_genre"
     t.integer  "too_mad"
     t.integer  "twinkle"
@@ -34,7 +33,6 @@ ActiveRecord::Schema.define(version: 20141126023004) do
 
   add_index "authors", ["email"], name: "index_authors_on_email", unique: true
   add_index "authors", ["reset_password_token"], name: "index_authors_on_reset_password_token", unique: true
-  add_index "authors", ["username"], name: "index_authors_on_username", unique: true
 
   create_table "cycdrafts", force: true do |t|
     t.string   "draft_name"

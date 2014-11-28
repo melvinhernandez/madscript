@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-offset-4 col-lg-4 col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
+      <h2 class="text-center">Log in</h2>
+
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="row">
+          <div class="form-group">
+            <%= f.label :username %><br />
+            <%= f.text_field :username, autofocus: true, class: "form-control" %></p>
+          </div>
+        </div>
+      <div class="row">
+        <div class="form-group">
+          <%= f.label :email %><br />
+          <%= f.email_field :email, class: "form-control" %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group">
+          <%= f.label :password %><br />
+          <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+        </div>
+      </div>
+      <div class="row">
+        <% if devise_mapping.rememberable? -%>
+          <div>
+            <label>
+              <%= f.check_box :remember_me %>
+              <%= f.label :remember_me %>
+            </label>
+          </div>
+        <% end -%>
+      </div>
+      <div class="row">
+        <%= f.submit "Log in", class: "btn btn-primary" %>
+      </div>
+      <% end %>
+      <br>
+      <div class="row">
+        <%= render "devise/shared/links" %>
+      </div>
+      <% if notice %>
+        <p class="alert alert-success"><%= notice %></p>
+      <% end %>
+      <% if alert %>
+        <p class="alert alert-danger"><%= alert %></p>
+      <% end %>
+    </div>
+  </div>
+</div>
