@@ -3,13 +3,67 @@
 <div style="height:30px;">
 </div>
 <div class="container" style="background-color:transparent !important;">
-	<div class="jumbotron">
-  <h1>Trending</h1>
-  <p>All people will be able to see the top Scripts of the site.
-	 It is going to be sort of the frontpage of the site. </p>
-	  <p class="text-center">
-	  	<%= link_to "Sign up", new_registration_path(resource_name), class: "btn btn-lg btn-info" %>
-	  </p>
-	</div>
+  <% if author_signed_in? %>
+    <div class="row">
+      <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+        <ul class="nav nav-tabs" id="hometabs">
+          <li class="active"><a href="#hot" data-toggle="tab">Trending</a></li>
+          <li><a href="#new" data-toggle="tab">New</a></li>
+          <li><a href="#groups" data-toggle="tab">Groups</a></li>
+        </ul>
+        <div class="tab-content" id="content">
+          <div class="tab-pane fade in active" id="hot">
+            <h3>This is supposed to be hot, hot, HOT!!!</h3>
+            <p>Most liked <i>Scripts</i> of the last 24 Hours!</p>
+            </div>
+          <div class="tab-pane fade" id="new">
+            <h3>This is supposed to be new, new, NEW!!!</h3>
+            <p>The newest created <i>Scripts</i>!</p>
+          </div>
+          <div class="tab-pane fade" id="groups">
+            <h3>This is supposed to be fun, fun, FUN!!!</h3>
+            <p>If the <i>Author</i> is part of a <i>Group</i> then there will be a list of <i>Groups</i> the <i>Author</i> belongs in.</p>
+            <p>Else, there will be a section showcasing <i>Groups</i> the <i>Author</i> might be interested in!</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <h3 class="panel-title text-center">Start writing, <%= current_author.username %>!</h3>
+          </div>
+          <div class="panel-body">
+            <p>
+              <div class="input-group">
+                <div class="input-group-btn">
+                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Search <span class="caret"></span></button>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="#"><i>Author</i></a></li>
+                    <li><a href="#"><i>Script</i></a></li>
+                    <li><a href="#"><i>Group</i></a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Partners</a></li>
+                  </ul>
+                </div><!-- /btn-group -->
+                <input type="text" class="form-control" placeholder="Coming soon...">
+              </div><!-- /input-group -->
+            </p>
+            <hr>
+            <p><button style="width:100%" type="button" class="btn btn-warning">Author a new <i>Script</i>!</button></p>
+            <p><button style="width:100%" type="button" class="btn btn-primary">Host a new <i>Group</i>!</button></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% else %>
+  	<div class="jumbotron">
+    <h1>Trending</h1>
+    <p>All people will be able to see the top Scripts of the site.
+  	 It is going to be sort of the frontpage of the site. </p>
+  	  <p class="text-center">
+  	  	<%= link_to "Sign up", new_registration_path(resource_name), class: "btn btn-lg btn-info" %>
+  	  </p>
+  	</div>
+  <% end %>
 <hr />
 </div>
