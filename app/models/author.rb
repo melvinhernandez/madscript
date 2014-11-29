@@ -9,4 +9,7 @@ class Author < ActiveRecord::Base
   :uniqueness => {
     :case_sensitive => false
   }, presence: true
+  has_many :stanzas
+  has_many :scripts
+  has_many :whispers
 end
