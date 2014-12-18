@@ -1,9 +1,30 @@
 Rails.application.routes.draw do
+  resources :scripts
+
+  resources :author
+
+  get 'script/new'
+
+  get 'script/create'
+
+  get 'script/find'
+
   get 'home/index'
 
   root 'home#index'
   
-  devise_for :authors, :controllers => { registrations: 'registrations' }
+  devise_for :authors, :controllers => { registrations: 'registrations' },
+                       :path_names => {:sign_up => "register", 
+                                      :sign_in => "login", 
+                                      :sign_out => "logout",
+                                      :settings => "settings"}
+
+  devise_scope :author do
+    get "login", :to => "devise/sessions#new"
+    get "register", :to => "devise/registrations#new"
+    get "settings", :to => "devise/registrations#edit"
+    get "logout",   :to => "devise/sessions#destroy"
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -58,5 +79,6 @@ Rails.application.routes.draw do
   #     # Directs /admin/products/* to Admin::ProductsController
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
-  #   end
+  #   
+end
 end

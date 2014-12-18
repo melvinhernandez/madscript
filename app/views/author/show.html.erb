@@ -1,0 +1,98 @@
+<div class="container">
+	<div class="page-header">
+		<h2><%= @author.username %></h2>
+	</div>
+	<div class="row">
+	      <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+	        <ul class="nav nav-tabs" id="hometabs">
+	          <li class="active"><a href="#biography" data-toggle="tab">Biography</a></li>
+	          <li><a href="#scripts" data-toggle="tab">Scripts</a></li>
+	          <li><a href="#contributions" data-toggle="tab">Contributions</a></li>
+	        </ul>
+	        <div class="tab-content" id="content">
+		        <div class="tab-pane fade in active" id="biography">
+		        	<br>
+	            	<div class="well">
+	            		<% if @author.bio.presence %>
+	            			<%= @author.bio %>
+	            		<% else %>
+	            			<p><%= @author.username %> is a writer.</p>
+	            		<% end %>
+	            		<% if author_signed_in? %>
+	            			<% if current_author.id == @author.id %>
+	            				<br>
+	            				<%= link_to "Edit Bio", edit_author_registration_path, :class => "btn btn-primary" %>
+	            			<% end %>
+	            		<% end %>
+
+
+	            	</div>
+		        </div>
+		        <div class="tab-pane fade" id="scripts">
+		          	<br />
+		            <% if @author.scripts.presence %>
+						<table class="table table-hover">
+							<thead>
+							    <tr>
+							      <th>Title</th>
+							      <th>Genre</th>
+							      <th>Stanzas</th>
+							      <th>Votes</th>
+							    </tr>
+							</thead>
+							<tbody>
+								<% @author.scripts.each do |script| %>
+								<tr class="clickableRow" href="../scripts/<%= script.id %>" style="cursor:pointer;">
+									<td><%= script.title %></td>
+									<td><%= script.genre %></td>
+									<td><%= script.num_of_stanzas %></td>
+									<td><%= script.votes %></td>
+								</tr>
+								<% end %>
+							</tbody>
+						</table>
+					<% else %>
+						<h4><%= @author.username %> has no scripts :(</h4>
+					<% end %>
+		        </div>
+		        <div class="tab-pane fade" id="contributions">
+		            <h3>All of the author's whispers and stanzas will go here...</h3>
+		        </div>
+		    </div>
+	      </div>
+	</div>
+	
+	<% if false %>
+		<h4><%= @trainer.name%>'s Pokemons</h4>
+		<table>
+		  <thead>
+		    <tr>
+		      <th>Pokemon</th>
+		      <th>Level</th>
+		      <th>Health</th>
+		      <th>Attack!</th>
+		    </tr>
+		  </thead>
+		<tbody>
+			<% @trainer.pokemons.each do |pokemon| %>
+			<tr>
+				<td><%= pokemon.name %></td>
+				<td><%= pokemon.level %></td>
+				<td><%= pokemon.health %></td>
+				<td><%= button_to "Damage!", damage_path(id: pokemon), :class => "button small", :method => :patch %></td>
+			</tr>
+			<% end %>
+		</tbody>
+	<% end %>
+	<% if false %>
+		<h4><%= @trainer.name %> has no pokemons :(</h4>
+	<% end %>
+</div>
+<!-- Allows clickable rows. -->
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+	      $(".clickableRow").click(function() {
+	            window.document.location = $(this).attr("href");
+	      });
+	});
+</script>

@@ -1,0 +1,42 @@
+<div class="container">
+	<p id="notice"><%= notice %></p>
+	<div class="page-header">
+ 		<h1><i><%= @script.title %></i> <small><span data-toggle="tooltip" data-placement="top" title="genre"class="label label-warning"><%= @script.genre %></span> 
+ 			<%= link_to @script.author do %>
+ 				<span data-toggle="tooltip" data-placement="top" title="author" class="label label-primary" style="a:hover {text-decoration:none;}"><%= @script.author.username %></span>
+ 			<% end %>
+ 		</small>
+ 		</h1>
+	</div>
+	<div class="row">
+	      <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+	        <ul class="nav nav-tabs" id="hometabs">
+	          <li class="active"><a href="#script" data-toggle="tab">Script</a></li>
+	          <li><a href="#description" data-toggle="tab">Preface</a></li>
+	          <li><a href="#whispers" data-toggle="tab">Whispers</a></li>
+	        </ul>
+	        <div class="tab-content" id="content">
+	          <div class="tab-pane fade in active" id="script">
+	            <h3>The stanzas will show up here in table form</h3>
+	            </div>
+	          <div class="tab-pane fade" id="description">
+	          	<br />
+	            <div class="well">
+	            	<p style="font-size:1.5em;"><%= @script.preface %></p>
+	            </div>
+	          </div>
+	          <div class="tab-pane fade" id="whispers">
+	            <h3>Script's whispers will show up here!</h3>
+	          </div>
+	        </div>
+	      </div>
+	</div>	
+	<hr>
+<%= link_to 'Edit', edit_script_path(@script) %> |
+<%= link_to 'Back', scripts_path %>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $("[data-toggle='tooltip']").tooltip();
+    });
+</script>
