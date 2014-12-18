@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141218162022) do
+ActiveRecord::Schema.define(version: 20141218220822) do
 
   create_table "authors", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -74,6 +74,8 @@ ActiveRecord::Schema.define(version: 20141218162022) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "author_id"
+    t.text     "content"
+    t.integer  "script_id"
   end
 
   create_table "whispers", force: true do |t|
