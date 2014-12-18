@@ -2,6 +2,12 @@
 
 one:
   title: MyString
+  genre: MyString
+  num_of_stanzas: 1
+  votes: 1
 
 two:
   title: MyString
+  genre: MyString
+  num_of_stanzas: 1
+  votes: 1

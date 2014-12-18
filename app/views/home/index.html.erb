@@ -13,8 +13,29 @@
         </ul>
         <div class="tab-content" id="content">
           <div class="tab-pane fade in active" id="hot">
-            <h3>This is supposed to be hot, hot, HOT!!!</h3>
-            <p>Most liked <i>Scripts</i> of the last 24 Hours!</p>
+            <br>
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>Author</th>
+                    <th>Title</th>
+                    <th>Genre</th>
+                    <th>Stanzas</th>
+                    <th>Votes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% Script.find_each do |script| %>
+                    <tr class="clickableRow" href="../scripts/<%= script.id %>" style="cursor:pointer;">
+                      <td><%= script.author.username %></td>
+                      <td><%= script.title %></td>
+                      <td><%= script.genre %></td>
+                      <td><%= script.num_of_stanzas %></td>
+                      <td><%= script.votes %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
             </div>
           <div class="tab-pane fade" id="new">
             <h3>This is supposed to be new, new, NEW!!!</h3>
@@ -49,7 +70,7 @@
               </div><!-- /input-group -->
             </p>
             <hr>
-            <p><button style="width:100%" type="button" class="btn btn-warning">Author a new <i>Script</i>!</button></p>
+            <p><%= button_to "Author a new Script!", new_script_path, :class => "btn btn-warning", :method => :get, :style => "width:100%" %></p>
             <p><button style="width:100%" type="button" class="btn btn-primary">Host a new <i>Group</i>!</button></p>
           </div>
         </div>
@@ -67,3 +88,11 @@
   <% end %>
 <hr />
 </div>
+
+<script type="text/javascript">
+  jQuery(document).ready(function($) {
+        $(".clickableRow").click(function() {
+              window.document.location = $(this).attr("href");
+        });
+  });
+</script>

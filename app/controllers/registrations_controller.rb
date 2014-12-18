@@ -7,7 +7,7 @@ class RegistrationsController < Devise::RegistrationsController
   end
  
   def account_update_params
-    params.require(:author).permit(:username, :email, :password, :password_confirmation, :current_password)
+    params.require(:author).permit(:username, :bio, :email, :password, :password_confirmation, :current_password)
   end
 
   private :sign_up_params
@@ -20,7 +20,7 @@ class RegistrationsController < Devise::RegistrationsController
         	:password, :password_confirmation)
       end
       devise_parameter_sanitizer.for(:account_update) do |u|
-        u.permit(:username,
+        u.permit(:username, :bio,
           :email, :password, :password_confirmation, :current_password)
       end
     end
