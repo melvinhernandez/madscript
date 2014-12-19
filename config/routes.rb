@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :scripts
+  :resources
 
+  resources :stanzas
   resources :author
 
   get 'script/new'

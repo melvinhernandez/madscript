@@ -30,7 +30,28 @@
 	          </div>
 	        </div>
 	      </div>
-	</div>	
+	</div>
+	<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<h3 class="panel-title text-center">Start wriing! </h3>
+			</div>
+			<div class="panel-body">
+			<%= form_for @Stanza, :url => url_for(:controller => "stanza", :action => :create) do |f| %>
+				<div class="form-group">
+					<%= f.label :content %>
+						<%= f.text_area :content, {class: "form-control", style: "resize:vertical;"} %>
+						<%= f.hidden_field :script_id, :value => "@script.id" %>
+				</div>
+				<div class="form-group">
+					<%= f.submit "add more", {class: "btn btn-info"}%>
+				<% end %>
+				</div>
+				
+				</div>	
+			</div>
+		</div>
+	</div>
 	<hr>
 <%= link_to 'Edit', edit_script_path(@script) %> |
 <%= link_to 'Back', scripts_path %>
