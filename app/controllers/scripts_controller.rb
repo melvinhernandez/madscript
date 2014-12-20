@@ -6,6 +6,7 @@ class ScriptsController < ApplicationController
   end
 
   def show
+    @Stanza = Stanza.new
   end
 
   def new

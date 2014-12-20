@@ -40,6 +40,8 @@ gem 'spring',        group: :development
 
 # Devise gem to implement users. Created in 'UserCreation' branch of repo.
 gem 'devise'
+# Used to display an avatar picture.
+gem 'carrierwave'
 
 # Gem to get boostrap onto rails.
 gem 'bootstrap-sass', '~> 3.3.1'

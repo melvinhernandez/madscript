@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141218220822) do
+ActiveRecord::Schema.define(version: 20141220043102) do
 
   create_table "authors", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20141218220822) do
     t.integer  "twinkle"
     t.string   "username"
     t.text     "bio"
+    t.string   "avatar"
   end
 
   add_index "authors", ["email"], name: "index_authors_on_email", unique: true
@@ -69,7 +70,6 @@ ActiveRecord::Schema.define(version: 20141218220822) do
 
   create_table "stanzas", force: true do |t|
     t.integer  "stanza_number"
-    t.string   "authored_by"
     t.integer  "number_of_lines"
     t.datetime "created_at"
     t.datetime "updated_at"
