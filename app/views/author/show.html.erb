@@ -1,6 +1,14 @@
 <div class="container">
 	<div class="page-header">
-		<h2><%= @author.username %></h2>
+		<h2><%= @author.username %> <small>
+			<% if author_signed_in? %>
+    			<% if current_author.id == @author.id %>
+    				<%= link_to edit_author_registration_path do %>
+    					<span class="label label-info">Edit Profile</span>
+    				<% end %>
+    			<% end %>
+    		<% end %>
+		</small></h2>
 	</div>
 	<div class="row">
 	      <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
@@ -18,14 +26,6 @@
 	            		<% else %>
 	            			<p><%= @author.username %> is a writer.</p>
 	            		<% end %>
-	            		<% if author_signed_in? %>
-	            			<% if current_author.id == @author.id %>
-	            				<br>
-	            				<%= link_to "Edit Bio", edit_author_registration_path, :class => "btn btn-primary" %>
-	            			<% end %>
-	            		<% end %>
-
-
 	            	</div>
 		        </div>
 		        <div class="tab-pane fade" id="scripts">
@@ -56,7 +56,28 @@
 					<% end %>
 		        </div>
 		        <div class="tab-pane fade" id="contributions">
-		            <h3>All of the author's whispers and stanzas will go here...</h3>
+		            <% if @author.stanzas.presence %>
+		            <table class="table table-striped">
+		                <thead>
+		                  <tr>
+		                  	<th>Content</th>
+		                  	<th>Location</th>
+		                    <th>Script</th>
+		                  </tr>
+		                </thead>
+		                <tbody>
+			            	<% @author.stanzas.each do |stanza| %>
+								<tr>
+									<td><%= stanza.content %></td>
+									<td><%= stanza.stanza_number %></td>
+									<td><i><q><%= link_to stanza.script.title, stanza.script %></q></i></td>
+								</tr>
+							<% end %>
+						</tbody>
+					</table>
+					<% else %>
+						<h4>Author has made no contributions.</h4>
+					<% end %>
 		        </div>
 		    </div>
 	      </div>

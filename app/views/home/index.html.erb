@@ -3,13 +3,25 @@
 <div style="height:30px;">
 </div>
 <div class="container" style="background-color:transparent !important;">
-  <% if author_signed_in? %>
+  <% if !author_signed_in? %>
+    <div class="jumbotron">
+    <h1>What is MadScript?</h1>
+    <p>A CRUD application to stimulate a collaboration between writers. Users can sign up for FREE. If a user has yet to sign up, then the user is only allowed to see the scripts therefore missing out on taking part of great community involvement.</p>
+    <p>A user, also known as an author, can start his/her own <b><i>Script!</i></b> The author can also contribute to the work of others by continually adding <b><i>Stanzas</i></b> to any script created by other authors.</p>
+    <p>Below, you can see some of the <b><i>Scripts</i></b> community authors have already contributed to! Don't wait any longer, join us!</p>
+      <p class="text-center">
+        <%= link_to "Start Writing Now", new_author_registration_path, class: "btn btn-lg btn-info" %>
+      </p>
+    </div>
+  <% end %>
     <div class="row">
       <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
         <ul class="nav nav-tabs" id="hometabs">
           <li class="active"><a href="#hot" data-toggle="tab">Trending</a></li>
           <li><a href="#new" data-toggle="tab">New</a></li>
-          <li><a href="#groups" data-toggle="tab">Groups</a></li>
+          <% if author_signed_in? %>
+            <li><a href="#groups" data-toggle="tab">Groups</a></li>
+          <% end %>
         </ul>
         <div class="tab-content" id="content">
           <div class="tab-pane fade in active" id="hot">
@@ -38,16 +50,16 @@
               </table>
             </div>
           <div class="tab-pane fade" id="new">
-            <h3>This is supposed to be new, new, NEW!!!</h3>
-            <p>The newest created <i>Scripts</i>!</p>
+            <h4>Most recent <b><i>Scripts</i></b> will be displayed.</h4>
           </div>
           <div class="tab-pane fade" id="groups">
-            <h3>This is supposed to be fun, fun, FUN!!!</h3>
+            <h4>Feature coming soon.</h4>
             <p>If the <i>Author</i> is part of a <i>Group</i> then there will be a list of <i>Groups</i> the <i>Author</i> belongs in.</p>
             <p>Else, there will be a section showcasing <i>Groups</i> the <i>Author</i> might be interested in!</p>
           </div>
         </div>
       </div>
+    <% if author_signed_in? %>
       <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
         <div class="panel panel-info">
           <div class="panel-heading">
@@ -76,17 +88,9 @@
         </div>
       </div>
     </div>
-  <% else %>
-  	<div class="jumbotron">
-    <h1>Trending</h1>
-    <p>All people will be able to see the top Scripts of the site.
-  	 It is going to be sort of the frontpage of the site. </p>
-  	  <p class="text-center">
-  	  	<%= link_to "Sign up", new_registration_path(resource_name), class: "btn btn-lg btn-info" %>
-  	  </p>
-  	</div>
-  <% end %>
 <hr />
+  </div>
+  <% end %>
 </div>
 
 <script type="text/javascript">

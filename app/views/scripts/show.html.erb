@@ -1,7 +1,15 @@
 <div class="container">
 	<p id="notice"><%= notice %></p>
 	<div class="page-header">
- 		<h1><i><%= @script.title %></i> <small><span data-toggle="tooltip" data-placement="top" title="genre"class="label label-warning"><%= @script.genre %></span> 
+ 		<h1><i><%= @script.title %></i> <small>
+ 			<% if author_signed_in? %>
+	 			<% if current_author.id == @script.author.id %>
+					<%= link_to edit_script_path(@script) do %>
+						<span data-toggle="tooltip" data-placement="top" title="edit title" class="label label-default" style="a:hover {text-decoration:none;}">Edit</span> 
+					<% end %>
+				<% end %>
+			<% end %>
+ 			<span data-toggle="tooltip" data-placement="top" title="genre"class="label label-warning"><%= @script.genre %></span> 
  			<%= link_to @script.author do %>
  				<span data-toggle="tooltip" data-placement="top" title="author" class="label label-primary" style="a:hover {text-decoration:none;}"><%= @script.author.username %></span>
  			<% end %>
@@ -17,8 +25,32 @@
 	        </ul>
 	        <div class="tab-content" id="content">
 	          <div class="tab-pane fade in active" id="script">
-	            <h3>The stanzas will show up here in table form</h3>
-	            </div>
+		          	<h3>Stanzas</h3>
+		          	<div class="panel panel-default">
+			            <% if @script.stanzas.presence %>
+				            <table class="table table-striped">
+				                <thead>
+				                  <tr>
+				                  	<th>Line</th>
+				                    <th>Content</th>
+				                    <th>Author</th>
+				                  </tr>
+				                </thead>
+				                <tbody>
+				            	<% @script.stanzas.each do |stanza| %>
+									<tr>
+										<td><%= stanza.stanza_number %></td>
+										<td><%= stanza.content %></td>
+										<td><%= link_to stanza.author.username, stanza.author%></td>
+									</tr>
+								<% end %>
+				                </tbody>
+			            	</table>
+						<% else %>
+							<p>This script is blank...</p>
+			            <% end %>
+		            </div>
+	          	</div>
 	          <div class="tab-pane fade" id="description">
 	          	<br />
 	            <div class="well">
@@ -26,22 +58,23 @@
 	            </div>
 	          </div>
 	          <div class="tab-pane fade" id="whispers">
-	            <h3>Script's whispers will show up here!</h3>
+	            <h4>Discussion developed from the <b><i>Script</i></b> connected to certain <b><i>Stanzas</i></b>. Coming soon!</h4>
 	          </div>
 	        </div>
-	      </div>
-	</div>
+	        <hr>
+	      	</div>
+	<% if author_signed_in? %>
 	<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
 		<div class="panel panel-info">
 			<div class="panel-heading">
-				<h3 class="panel-title text-center">Start wriing! </h3>
+				<h3 class="panel-title text-center">Start writing! </h3>
 			</div>
 			<div class="panel-body">
-			<%= form_for @Stanza, :url => url_for(:controller => "stanza", :action => :create) do |f| %>
+			<%= form_for @Stanza, :url => stanza_path, :html => {:method => :post} do |f| %>
 				<div class="form-group">
 					<%= f.label :content %>
 						<%= f.text_area :content, {class: "form-control", style: "resize:vertical;"} %>
-						<%= f.hidden_field :script_id, :value => "@script.id" %>
+						<%= f.hidden_field :script_id, :value => @script.id %>
 				</div>
 				<div class="form-group">
 					<%= f.submit "add more", {class: "btn btn-info"}%>
@@ -51,10 +84,8 @@
 				</div>	
 			</div>
 		</div>
+	<% end %>
 	</div>
-	<hr>
-<%= link_to 'Edit', edit_script_path(@script) %> |
-<%= link_to 'Back', scripts_path %>
 </div>
 <script type="text/javascript">
     $(function () {
